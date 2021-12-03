@@ -154,10 +154,11 @@
       "url": "https://packages.unity.com"
     },
     "io.backtrace.unity": {
-      "version": "file:D:/PersonalWork/gamejam_backtrace/backtrace-unity-3.7.0",
+      "version": "https://github.com/backtrace-labs/backtrace-unity.git",
       "depth": 0,
-      "source": "local",
-      "dependencies": {}
+      "source": "git",
+      "dependencies": {},
+      "hash": "e346f3beb235ba7d5ee3f9b365caf2e3a608eb1a"
     },
     "com.unity.modules.ai": {
       "version": "1.0.0",
