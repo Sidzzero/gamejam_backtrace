@@ -392,9 +392,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df4c0b35d85ebb845b750f86ebbed98a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentState: 0
+  prevState: 5
   fMovementSpeed: 3
   rbAttached: {fileID: 1417964657}
   fJumpingForce: 300
+  acController: {fileID: 0}
 --- !u!1 &1530962302
 GameObject:
   m_ObjectHideFlags: 0

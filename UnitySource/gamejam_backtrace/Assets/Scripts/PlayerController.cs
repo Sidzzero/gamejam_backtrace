@@ -6,10 +6,16 @@ namespace sidz.wogame
 {
     public class PlayerController : MonoBehaviour
     {
-        [Header("Player Settings")]
+
+        public ePlayerStates currentState = ePlayerStates.Idle;
+        public ePlayerStates prevState  = ePlayerStates.Init;
+        [Header("Player Movement Settings")]
         public float fMovementSpeed = 3f;
         public Rigidbody rbAttached;
         public float fJumpingForce = 300f;
+
+        [Header("Animations")]
+        public Animator acController;
 
         //Movements
         private float fHorizontalAxis;
@@ -36,8 +42,21 @@ namespace sidz.wogame
                 {
                     bJumpStarted = true;
                     bIsAlreadyJumping = false;
+                    UpdateState(ePlayerStates.Jump);
                 }
             }
+            if (bJumpStarted == false)
+            {
+                if (fHorizontalAxis == 0)
+                {
+                    UpdateState(ePlayerStates.Idle);
+                }
+                else
+                {
+                    UpdateState(ePlayerStates.Move);
+                }
+            }
+          
         }
         // Update is called once per frame
         void FixedUpdate()
@@ -63,5 +82,34 @@ namespace sidz.wogame
             }
        
         }
+
+        #region GAME_RELATED
+        public void UpdateState(ePlayerStates a_newState)
+        {
+            if (a_newState == currentState)
+            {
+               // Debug.Log("Player is same state already:"+currentState);
+                return;
+            }
+            prevState = currentState;
+            currentState = a_newState;
+            switch (currentState)
+            {
+                case ePlayerStates.Idle:
+                    break;
+                case ePlayerStates.Move:
+                    break;
+                case ePlayerStates.Jump:
+                    break;
+                case ePlayerStates.Dead:
+                    break;
+                case ePlayerStates.Shooting:
+                    break;
+                case ePlayerStates.Init:
+                    Debug.LogError("Someone tried to play this invalid State ");
+                    break;
+            }
+        }
+        #endregion GAME_RELATED
     }
 }
