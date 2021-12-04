@@ -5,19 +5,22 @@ namespace sidz.wogame
 {
     public class DragManager : MonoBehaviour
     {
+        public List<DraggableItems> lstDragItems;
         //Holds all the draggable items 
         //Test if if is in the region
         // Start is called before the first frame update
-        void Start()
+
+        public Collider colAttachedBounds;
+        private void Start()
         {
-
+       
         }
-
-        // Update is called once per frame
-        void Update()
+        public bool CanIDrag(Vector3 v_Position)
         {
-
+            v_Position.z = colAttachedBounds.bounds.center.z;
+            return colAttachedBounds.bounds.Contains(v_Position);
         }
+          
     }
 
 }

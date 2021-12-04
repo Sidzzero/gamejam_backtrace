@@ -25,18 +25,23 @@ namespace sidz.wogame
         //Jumping
         private bool bJumpStarted;
         private bool bIsAlreadyJumping;
-      
+        private bool bMidAir;
+        private bool bJumpKeyPressed;
 
         void Start()
         {
             rbAttached = GetComponent<Rigidbody>();
         }
+
+       
         private void Update()
         {
             fHorizontalAxis = Input.GetAxis("Horizontal");
             fVerticalAxis = Input.GetAxis("Vertical");
+            bJumpKeyPressed = Input.GetKeyDown(KeyCode.Space);
+
             vCurrentVelocity = rbAttached.velocity;
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (bJumpKeyPressed)
             {
                 if (bJumpStarted == false)
                 {
@@ -55,29 +60,35 @@ namespace sidz.wogame
                 {
                     UpdateState(ePlayerStates.Move);
                 }
-            }
+            } 
           
+
         }
         // Update is called once per frame
         void FixedUpdate()
         {
-            if (fHorizontalAxis!=0)
+           // if (fHorizontalAxis!=0)
             {
-                rbAttached.velocity = new Vector3(fMovementSpeed* fHorizontalAxis, vCurrentVelocity.y,vCurrentVelocity.z);
+              rbAttached.velocity = new Vector3(fMovementSpeed * fHorizontalAxis, rbAttached.velocity.y, rbAttached.velocity.z);
             }
-            if (bJumpStarted == true && bIsAlreadyJumping == false)
+            if ((bJumpStarted == true && bIsAlreadyJumping == false)  )
             {
                 bIsAlreadyJumping = true;
+                
                 rbAttached.AddForce(Vector3.up*fJumpingForce , ForceMode.Force);
+                
             }
+           
+
 
         }
         private void OnCollisionEnter(Collision collision)
         {
             if (collision.gameObject.tag == GameTags.c_strWall)
             {
-                bIsAlreadyJumping = false;
-                bJumpStarted = false;
+                    bIsAlreadyJumping = false;
+                    bJumpStarted = false;
+
                 Debug.Log("Hit by wall", collision.gameObject);
             }
        

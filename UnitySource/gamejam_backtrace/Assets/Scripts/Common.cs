@@ -21,6 +21,7 @@ namespace sidz.wogame
     public  class GameTags
     {
         public static readonly string c_strWall = "Wall";
+        public static readonly string c_strRegion = "Region";
     }
 
 
