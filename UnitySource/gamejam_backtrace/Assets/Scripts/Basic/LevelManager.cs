@@ -14,6 +14,7 @@ namespace sidz.finalbuild
         public Transform transStartingPosition;
         public float fPauseDuration = 0.5f;
         public int iCoinsToCollect;
+        public bool bUseCollider = true;
         
         public GameObject uiGameLost;
         public GameObject uiGameWon;
@@ -82,15 +83,16 @@ namespace sidz.finalbuild
         #region PAUSE_AREA
         public void UI_PauseToggle(bool a_bPause)
         {
-         //   uiPauseScreen.SetActive(a_bPause);
-         //   uiPauseBtn.SetActive(!a_bPause);
-        
+            //   uiPauseScreen.SetActive(a_bPause);
+            //   uiPauseBtn.SetActive(!a_bPause);
+            uiPauseCollider.SetActive(bUseCollider && a_bPause);
             if (a_bPause)
             {
                 uiPauseScreen.transform.position += Vector3.down * 15;
                 uiPauseScreen.gameObject.SetActive(true);
                 uiPauseBtn.GetComponent<Button>().interactable = !a_bPause;
                 uiPauseScreen.transform.DOMove(vPauseScreenStartPosition, fPauseDuration);
+               
             }
             else
             {
@@ -102,6 +104,8 @@ namespace sidz.finalbuild
                     uiPauseScreen.gameObject.SetActive(false); 
                 });
             }
+    
+
         }
         public void UI_PauseToggleCollider(bool a_bPause)
         {
