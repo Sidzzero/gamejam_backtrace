@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,6 +11,8 @@ namespace sidz.finalbuild
     public class LevelManager : MonoBehaviour
     {
         public BPlayerController player;
+        public Transform transStartingPosition;
+        public float fPauseDuration = 0.5f;
         public int iCoinsToCollect;
         
         public GameObject uiGameLost;
@@ -19,9 +22,13 @@ namespace sidz.finalbuild
         public GameObject uiPauseScreen;
         public GameObject uiPauseCollider;
         private int iCurrentCollected = 0;
+
+        private Vector3 vPauseScreenStartPosition;
         private void Start()
         {
             iCurrentCollected = 0;
+            player.transform.position = transStartingPosition.position;
+            vPauseScreenStartPosition = uiPauseScreen.transform.position;
         }
         public void Level_CoinCollected(GameObject coinObj)
         {
@@ -75,14 +82,42 @@ namespace sidz.finalbuild
         #region PAUSE_AREA
         public void UI_PauseToggle(bool a_bPause)
         {
-            uiPauseScreen.SetActive(a_bPause);
-            uiPauseBtn.SetActive(!a_bPause);
-            uiPauseBtn.GetComponent<Button>().interactable = !a_bPause;
+         //   uiPauseScreen.SetActive(a_bPause);
+         //   uiPauseBtn.SetActive(!a_bPause);
+        
+            if (a_bPause)
+            {
+                uiPauseScreen.transform.position += Vector3.down * 15;
+                uiPauseScreen.gameObject.SetActive(true);
+                uiPauseBtn.GetComponent<Button>().interactable = !a_bPause;
+                uiPauseScreen.transform.DOMove(vPauseScreenStartPosition, fPauseDuration);
+            }
+            else
+            {
+
+                var temp = uiPauseScreen.transform.position + Vector3.down * 15; ;
+                uiPauseScreen.transform.DOMove(temp, fPauseDuration).OnComplete(()=> 
+                { 
+                    uiPauseBtn.GetComponent<Button>().interactable = !a_bPause; 
+                    uiPauseScreen.gameObject.SetActive(false); 
+                });
+            }
         }
         public void UI_PauseToggleCollider(bool a_bPause)
         {
             uiPauseCollider.SetActive(a_bPause);
         }
         #endregion PAUSE_AREA
+
+        [ContextMenu("Test moving")]
+        public void Test_MoveWithTween()
+        {
+
+            //  UI_PauseToggle(true);
+            uiPauseScreen.transform.position += Vector3.down * 15;
+            uiPauseScreen.gameObject.SetActive(true);
+            uiPauseScreen.transform.DOMove(vPauseScreenStartPosition, fPauseDuration);
+
+        }
     }
 }

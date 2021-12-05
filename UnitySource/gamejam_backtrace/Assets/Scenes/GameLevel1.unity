@@ -1956,13 +1956,13 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 2
+  m_Height: 1.3
   m_Radius: 0.5
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0
-  m_Center: {x: 0, y: 0.51, z: 0}
+  m_Center: {x: 0, y: 0.43, z: 0}
 --- !u!114 &1143510403
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3911,6 +3911,36 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1994697006}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2006060577
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2006060578}
+  m_Layer: 0
+  m_Name: PlayerStartPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2006060578
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2006060577}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -16.234293, y: -0.30475008, z: -0.0367129}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2131279067}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2008506372
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3941,7 +3971,7 @@ PrefabInstance:
     - target: {fileID: 3372482367672865397, guid: f2d090a9680d67849a0e0a5ab518f053,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.46
+      value: 7.02
       objectReference: {fileID: 0}
     - target: {fileID: 3372482367672865397, guid: f2d090a9680d67849a0e0a5ab518f053,
         type: 3}
@@ -4411,7 +4441,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 8.004293, y: 1.5247501, z: 0.0367129}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 2006060578}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4428,6 +4459,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1143510403}
+  transStartingPosition: {fileID: 2006060578}
   iCoinsToCollect: 3
   uiGameLost: {fileID: 1077265994}
   uiGameWon: {fileID: 789186987}
