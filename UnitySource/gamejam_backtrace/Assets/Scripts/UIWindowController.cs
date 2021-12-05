@@ -20,6 +20,7 @@ namespace sidz.wogame
     {
         public List<UIObjectContainer> lstObjectContainer;
         public GameObject goStartMenu;
+        public GameObject goPauseMenu;
         // Start is called before the first frame update
         void Start()
         {
@@ -35,6 +36,12 @@ namespace sidz.wogame
                 {
                     UI_StartMenuToggle(false);
                 }
+            }
+
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                goPauseMenu.SetActive(false);
+                TweenMovement(eDirection.up, goPauseMenu.transform);
             }
         }
 
@@ -116,6 +123,31 @@ namespace sidz.wogame
                 goImage.position = vOrginalImagePos;
                 goCollider.position = vOrginalColliderPos;
             });
+            doDequence.Play();
+        }
+        public void TweenMovement(eDirection AppearDirection, Transform goImage)
+        {
+            if (doDequence.IsActive() == true)
+            {
+                doDequence.Kill();
+            }
+            doDequence = DOTween.Sequence();
+            goPauseMenu.SetActive(true);
+            Vector3 vOrginalImagePos = goImage.position;
+            goImage.position = vOrginalImagePos - Common.GetDirectionVector(AppearDirection) * 10;
+            doDequence.Append
+                (
+
+                    goImage.DOMove(vOrginalImagePos, 0.8f)
+
+                );
+           
+            doDequence.OnKill(() =>
+            {
+                goImage.position = vOrginalImagePos;
+             
+            });
+            
             doDequence.Play();
         }
     }
