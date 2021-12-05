@@ -73,6 +73,7 @@
     <Compile Include="Assets\Scripts\Basic\InteractaleType.cs" />
     <Compile Include="Assets\Scripts\Basic\Common.cs" />
     <Compile Include="Assets\Scripts\Basic\UIController.cs" />
+    <Compile Include="Assets\Scripts\Basic\SOGameProgress.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
