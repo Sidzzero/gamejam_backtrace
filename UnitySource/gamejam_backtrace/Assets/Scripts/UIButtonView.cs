@@ -17,32 +17,48 @@ namespace sidz.wogame
         public UnityEvent<bool> uEvntOnPointerLeftWindowController;
         public UnityEvent<bool> uEvntPoniterEnter;
         public UnityEvent<bool> uEvntPointerExit;
-        private void Start()
+
+        private bool bDetectionRange = false;
+
+        private void LateUpdate()
         {
-            
+            if (bDetectionRange == false && Input.GetMouseButtonDown(1))
+            {
+                windowController.ToggleCollider(this.gameObject, false);
+            }
         }
-      
         public void OnPointerClick(PointerEventData eventData)
         {
             if (eventData.button == PointerEventData.InputButton.Left)
             {
-                windowController.OnButtonLeftClick(()=> { uEvntOnLeftClickWindowController?.Invoke(true); });
+                windowController.OnButtonLeftClick(()=> { uEvntOnLeftClickWindowController?.Invoke(true);
+                    windowController.ToggleCollider(this.gameObject, true);
+                });
             }
             else if (eventData.button == PointerEventData.InputButton.Right)
             {
-                windowController.OnButtonLeftClick(() => { uEvntOnLeftClickWindowController?.Invoke(true); });
+                  windowController.OnButtonLeftClick(() => { uEvntOnLeftClickWindowController?.Invoke(true);
+                      windowController.ToggleCollider(this.gameObject, false);
+                  });
+              
             }
            
         }
 
         public void OnPointerExit(PointerEventData eventData)
         {
-                windowController.OnPointerExit(() => { uEvntPointerExit?.Invoke(false); });
+            bDetectionRange = false;
+            windowController.OnPointerExit(() => 
+                { uEvntPointerExit?.Invoke(false);
+                  
+                });
         }
 
         public void OnPointerEnter(PointerEventData eventData)
         {
+            bDetectionRange = true;
             windowController.OnPointerEnter(() => { uEvntPoniterEnter?.Invoke(false); });
+            
         }
     }
 }
