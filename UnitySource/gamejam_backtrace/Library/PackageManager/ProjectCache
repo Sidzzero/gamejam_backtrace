@@ -5,16 +5,16 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637743025573247817
-    m_Hash: 3378180222
+      ticks: 637743101302923558
+    m_Hash: 2824224120
   m_LockFileStatus:
     m_FilePath: D:/PersonalWork/gamejam_backtrace/UnitySource/gamejam_backtrace/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637743025576338102
-    m_Hash: 4123710090
+      ticks: 637743101302923558
+    m_Hash: 1746091428
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_PackageAssets:
