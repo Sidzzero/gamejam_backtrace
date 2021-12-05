@@ -8,6 +8,7 @@ namespace sidz.finalbuild
         Coin ,
         Door ,
         Boundary ,
+        Obstcale
       
     }
 public class Common 
