@@ -69,6 +69,9 @@
     <Compile Include="Assets\Scripts\Common.cs" />
     <Compile Include="Assets\Scripts\UIWindowController.cs" />
     <Compile Include="Assets\Scripts\Basic\BPlayerController.cs" />
+    <Compile Include="Assets\Scripts\Basic\LevelManager.cs" />
+    <Compile Include="Assets\Scripts\Basic\InteractaleType.cs" />
+    <Compile Include="Assets\Scripts\Basic\Common.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\DOTween\DOTween.XML" />

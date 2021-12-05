@@ -6,6 +6,8 @@ namespace sidz.finalbuild
 
     public class BPlayerController : MonoBehaviour
     {
+        [Header("Controller")]
+        public LevelManager levelManager;
         [SerializeField] private CharacterController controller;
         private Vector3 playerVelocity;
         private bool groundedPlayer;
@@ -13,8 +15,16 @@ namespace sidz.finalbuild
         [SerializeField] private float jumpHeight = 1.0f;
         [SerializeField] private float gravityValue = -9.81f;
 
-
-
+        private void Start()
+        {
+           
+        }
+        void OnControllerColliderHit(ControllerColliderHit hit)
+        {
+            var temp_IntComp = hit.gameObject.GetComponent<InteractaleType>();
+            if(temp_IntComp!=null)
+            levelManager.Level_OnPlayerInteracted(temp_IntComp);
+        }
         void Update()
         {
             groundedPlayer = controller.isGrounded;
