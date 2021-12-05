@@ -130,8 +130,10 @@ namespace sidz.wogame
             switch (currentState)
             {
                 case ePlayerStates.Idle:
+                    acController.SetTrigger("Idle");
                     break;
                 case ePlayerStates.Move:
+                    acController.SetTrigger("Run");
                     break;
                 case ePlayerStates.Jump:
                     break;
