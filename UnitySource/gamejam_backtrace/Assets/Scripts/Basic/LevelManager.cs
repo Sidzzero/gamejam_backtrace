@@ -2,15 +2,22 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace sidz.finalbuild
 {
 
     public class LevelManager : MonoBehaviour
     {
+        public BPlayerController player;
         public int iCoinsToCollect;
-        public GameObject uiGameEnd;
-
+        
+        public GameObject uiGameLost;
+        public GameObject uiGameWon;
+        [Header("UI")]
+        public GameObject uiPauseBtn;
+        public GameObject uiPauseScreen;
+        public GameObject uiPauseCollider;
         private int iCurrentCollected = 0;
         private void Start()
         {
@@ -34,11 +41,14 @@ namespace sidz.finalbuild
             if (a_Sucess)
             {
                 Debug.Log("Game Won with Sucess:");
+                uiGameWon.SetActive(true);
             }
             else
             {
                 Debug.Log("Game Won with Failure:" + (iCurrentCollected - iCoinsToCollect));
+                uiGameLost.SetActive(true);
             }
+            player.enabled = false;
         }
 
         internal void Level_OnPlayerInteracted(InteractaleType temp_IntComp)
@@ -56,5 +66,23 @@ namespace sidz.finalbuild
                     break;
             }
         }
+
+        public void Level_RestartLevel()
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene(0);//It;s hardcoded change it
+        }
+
+        #region PAUSE_AREA
+        public void UI_PauseToggle(bool a_bPause)
+        {
+            uiPauseScreen.SetActive(a_bPause);
+            uiPauseBtn.SetActive(!a_bPause);
+            uiPauseBtn.GetComponent<Button>().interactable = !a_bPause;
+        }
+        public void UI_PauseToggleCollider(bool a_bPause)
+        {
+            uiPauseCollider.SetActive(a_bPause);
+        }
+        #endregion PAUSE_AREA
     }
 }
