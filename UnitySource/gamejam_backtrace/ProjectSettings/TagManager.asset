@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Wall
   - Region
+  - Icon
   layers:
   - Default
   - TransparentFX

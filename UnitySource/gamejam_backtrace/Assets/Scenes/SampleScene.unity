@@ -542,7 +542,7 @@ GameObject:
   - component: {fileID: 950132794}
   m_Layer: 0
   m_Name: Icon (1)
-  m_TagString: Region
+  m_TagString: Icon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -574,6 +574,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dragManager: {fileID: 1809130400}
+  bPlayerStanding: 0
 --- !u!65 &950132795
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -581,7 +582,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 950132792}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: e11c09935bb6c8d4fb2f0a5397303b8f, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -1197,7 +1198,7 @@ GameObject:
   - component: {fileID: 1927860421}
   m_Layer: 0
   m_Name: Icon
-  m_TagString: Region
+  m_TagString: Icon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1229,6 +1230,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dragManager: {fileID: 1809130400}
+  bPlayerStanding: 1
 --- !u!65 &1927860422
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1236,7 +1238,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1927860419}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: e11c09935bb6c8d4fb2f0a5397303b8f, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2

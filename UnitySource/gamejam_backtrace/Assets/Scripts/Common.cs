@@ -22,6 +22,7 @@ namespace sidz.wogame
     {
         public static readonly string c_strWall = "Wall";
         public static readonly string c_strRegion = "Region";
+        public static readonly string c_strIcon = "Icon";
     }
 
 

@@ -28,6 +28,10 @@ namespace sidz.wogame
         private bool bMidAir;
         private bool bJumpKeyPressed;
 
+        //Standing
+        private Collider colCurrentStandingOnIcon = null;
+
+
         void Start()
         {
             rbAttached = GetComponent<Rigidbody>();
@@ -84,14 +88,33 @@ namespace sidz.wogame
         }
         private void OnCollisionEnter(Collision collision)
         {
-            if (collision.gameObject.tag == GameTags.c_strWall)
+            var collidingTag = collision.gameObject.tag;
+            if (collidingTag == GameTags.c_strWall)
             {
                     bIsAlreadyJumping = false;
                     bJumpStarted = false;
 
-                Debug.Log("Hit by wall", collision.gameObject);
+                Debug.Log("Hit by wall/region", collision.gameObject);
             }
-       
+           else if (collidingTag == GameTags.c_strIcon && colCurrentStandingOnIcon == null)
+            {
+                colCurrentStandingOnIcon = collision.collider;
+                 bIsAlreadyJumping = false;
+                bJumpStarted = false;
+                collision.gameObject.GetComponent<DraggableItems>().bPlayerStanding = true;
+                Debug.Log("enterHit byicon", collision.gameObject);
+            }
+        }
+        private void OnCollisionExit(Collision collision)
+        {
+
+            var collidingTag = collision.gameObject.tag;
+            if (collidingTag == GameTags.c_strIcon && colCurrentStandingOnIcon == collision.collider)
+            {
+                colCurrentStandingOnIcon = null;
+                collision.gameObject.GetComponent<DraggableItems>().bPlayerStanding = false;
+                Debug.Log("exitHit byicon", collision.gameObject);
+            }
         }
 
         #region GAME_RELATED
