@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,7 +20,8 @@ namespace sidz.wogame
         public UnityEvent<bool> uEvntPointerExit;
 
         private bool bDetectionRange = false;
-
+        public eDirection AppearDirection = eDirection.up;
+        public eDirection DisappearDirection = eDirection.down;
         private void LateUpdate()
         {
             if (bDetectionRange == false && Input.GetMouseButtonDown(1))
@@ -59,6 +61,12 @@ namespace sidz.wogame
             bDetectionRange = true;
             windowController.OnPointerEnter(() => { uEvntPoniterEnter?.Invoke(false); });
             
+        }
+        [ContextMenu("Tween Up")]
+        public void TweenMovement()
+        {
+            transform.position = transform.position  - Common.GetDirectionVector(AppearDirection) * 2.0f;
+            transform.DOMove(transform.position + Common.GetDirectionVector(AppearDirection)*2.0f, 1);
         }
     }
 }

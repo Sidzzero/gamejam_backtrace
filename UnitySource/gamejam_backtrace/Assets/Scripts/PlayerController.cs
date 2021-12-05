@@ -38,7 +38,7 @@ namespace sidz.wogame
         }
 
        
-        private void Update()
+        private void LateUpdate()
         {
             fHorizontalAxis = Input.GetAxis("Horizontal");
             fVerticalAxis = Input.GetAxis("Vertical");
